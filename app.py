@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response
 import sqlite3
-from datetime import datetime, timedelta
+from datetime import datetime
+import threading
+import requests
+import time
 
 app = Flask(__name__)
 
@@ -73,6 +76,19 @@ def set_theme(theme):
     resp = make_response(redirect(url_for('index')))
     resp.set_cookie('theme', theme)  # Сохранение темы в cookie
     return resp
+
+# Периодическая задача для отправки запроса
+def periodic_task():
+    while True:
+        try:
+            # Отправка запроса к самому себе
+            requests.get('http://127.0.0.1:5000/')
+        except Exception as e:
+            print(f"Ошибка отправки запроса: {e}")
+        time.sleep(30)  # Интервал в 30 секунд
+
+# Запуск периодической задачи в отдельном потоке
+threading.Thread(target=periodic_task, daemon=True).start()
 
 if __name__ == '__main__':
     app.run(debug=True)
