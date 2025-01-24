@@ -1,0 +1,26 @@
+body {
+    background-color: #fce4ec;
+    color: #d81b60;
+    font-family: Arial, sans-serif;
+}
+a, .btn {
+    background-color: #d81b60;
+    color: #ffffff;
+    border: none;
+}
+a:hover, .btn:hover {
+    background-color: #ad1457;
+}
+.card {
+    background-color: #f8bbd0;
+    color: #880e4f;
+    border: 1px solid #f48fb1;
+}
+.list-group-item {
+    background-color: #f8bbd0;
+    color: #880e4f;
+}
+.list-group-item.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
